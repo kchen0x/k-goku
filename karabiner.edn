@@ -1,0 +1,159 @@
+{:templates {:launch "osascript -e 'tell application \"%s\" to activate'"}
+ :layers {:hyper-mode {:key :caps_lock :alone {:key :escape}}}
+ :simlayers {:move-mode {:key :tab}
+             :launch-mode {:key :slash}
+             :tmux-winmove-mode {:key :q :condi :Terminals}
+             :period-mode {:key :period}
+             :comma-mode {:key :comma}
+             :space-mode {:key :spacebar :condi :macbook-internal}}
+ :main [{:des "Hyper Mode - Control"
+         :rules [:hyper-mode
+                 [:a :!Ta]
+                 [:c :!Tc]
+                 [:d :!Td]
+                 [:z :!Tz]]}
+        {:des "Hyper Mode - Navigation"
+         :rules [:hyper-mode
+                 [:j :down_arrow]
+                 [:k :up_arrow]
+                 [:h :left_arrow]
+                 [:l :right_arrow]
+                 [:b :!Oleft_arrow]
+                 [:y :!Oright_arrow]
+                 [:u :home]
+                 [:i :end]
+                 [:!Cj :!Sdown_arrow]
+                 [:!Ck :!Sup_arrow]
+                 [:!Ch :!Sleft_arrow]
+                 [:!Cl :!Sright_arrow]
+                 [:!Cb :!SOleft_arrow]
+                 [:!Cy :!SOright_arrow]
+                 [:!Cu :!Shome]
+                 [:!Ci :!Send]
+                 [:!Oj {:mkey {:y 1536}}]
+                 [:!Ok {:mkey {:y -1536}}]
+                 [:!Oh {:mkey {:x -1536}}]
+                 [:!Ol {:mkey {:x 1536}}]]}
+        {:des "Hyper Mode - Mousekey"
+         :rules [:hyper-mode
+                 [:down_arrow {:mkey {:y 1536}}]
+                 [:up_arrow {:mkey {:y -1536}}]
+                 [:left_arrow {:mkey {:x -1536}}]
+                 [:right_arrow {:mkey {:x 1536}}]
+                 [:return_or_enter {:pkey :button1}]
+                 [:!Creturn_or_enter {:pkey :button2}]]}
+        {:des "Hyper Mode - Deletion"
+         :rules [:hyper-mode
+                 [:n :!Odelete_or_backspace]
+                 [:m :delete_or_backspace]
+                 [:comma :delete_forward]
+                 [:period :!Odelete_forward]
+                 [:!Cn :!Cdelete_or_backspace]
+                 [:!Cm :!Cdelete_or_backspace]]}
+        {:des "Hyper Mode - Misc"
+         :rules [:hyper-mode
+                 [:escape :caps_lock]
+                 [:grave_accent_and_tilde :!CS5]]}
+        {:des "Space Mode (Change Mac keyboard to Filco Minila layout with spacebar FN)"
+         :rules [:space-mode
+                 [:##s :left_arrow]
+                 [:##d :down_arrow]
+                 [:##f :right_arrow]
+                 [:##e :up_arrow]
+
+                 [:##j :insert]
+                 [:##k :home]
+                 [:##l :page_up]
+                 [:##semicolon :delete_or_backspace]
+                 [:##m :delete_forward]
+                 [:##comma :end]
+                 [:##period :page_down]
+         ]
+        }
+        {:des "Vi Mode [D as Trigger Key]"
+         :rules [:move-mode
+                 [:##j :down_arrow]
+                 [:##k :up_arrow]
+                 [:##h :left_arrow]
+                 [:##l :right_arrow]
+                 [:##b :!Oleft_arrow]
+                 [:##w :!Oright_arrow]
+                 [:##0 :home]
+                 [:##4 :end]]}
+        {:des "Launcher mode [L] as Trigger Key"
+         :rules [:launch-mode
+                 [:t [:launch "Telegram"]]
+                 [:s [:launch "Safari"]]
+                 [:m [:launch "MWeb.app"]]]}
+        ; {:des "HHKB, FILCO MINILA Change left control to esc if alone"
+        ;  :rules [[:##left_control :left_control [:hhkb-bt :hhkb :hhkb-tmk :filco-minila] {:alone :escape}]]}
+        {:des "Shift Press Alone to change input source"
+         :rules [[:right_shift :right_shift nil {:alone :!Tspacebar}]
+                 [:left_shift :left_shift nil {:alone :!Tspacebar}]]}
+        {:des "Change right_command to command-tab when used alone"
+         :rules [[:right_command :right_command nil {:alone [:!Ctab]}]]}
+        {:des "Change right_option to f17 when used alone"
+         :rules [[:right_option :!COTleft_shift nil {:alone [:f17]}]]}
+        {:des "Quit application by pressing command-q twice" 
+         :rules [[:!C#Pq [:!Cq ["command-q" 0]] ["command-q" 1]]
+                 [:!C#Pq ["command-q" 1] nil {:delayed {:invoked ["command-q" 0] :canceled ["commandq" 0]}}]]}
+        {:des "q"
+         :rules [:tmux-winmove-mode ;Ta is the prefix for tmux
+                 [:comma [:!Ta :comma]]
+                 [:open_bracket [:!Ta :open_bracket]]
+                 [:close_bracket [:!Ta :close_bracket]]
+                 [:hyphen [:!Ta :hyphen]]
+                 [:backslash [:!Ta :backslash]]
+                 [:f [:!Ta :f]]
+                 [:e [:!Ta :e]]
+                 [:w [:!Ta :w]]
+                 [:h [:!Ta :h]]
+                 [:j [:!Ta :j]]
+                 [:k [:!Ta :k]]
+                 [:l [:!Ta :l]]
+                 [:v [:!Ta :v]]
+                 [:s [:!Ta :s]]
+                 [:m [:!Ta :z]]
+                 [:x [:!Ta :x]]
+                 [:c [:!Ta :c]]
+                 [:1 [:!Ta :1]]
+                 [:2 [:!Ta :2]]
+                 [:3 [:!Ta :3]]
+                 [:4 [:!Ta :4]]
+                 [:5 [:!Ta :5]]]}
+        {:des "comma mode"
+         :rules [:comma-mode
+                 [:a :open_bracket]
+                 [:s :close_bracket]
+                 [:d :!S7]
+                 [:f :!S8]
+                 [:q :!Shyphen]
+                 [:w :!Sequal_sign]
+                 [:e :!S5]
+                 [:r :!S6]]}
+        {:des "period mode"
+         :rules [:period-mode
+                 [:comma ["period-comma-mode" 1] nil {:alone :comma :afterup ["period-comma-mode" 0]}]
+                 [:a [:!Sgrave_accent_and_tilde :slash]]
+                 [:s [:period :!S8]]
+                 [:d :!S9]
+                 [:f :!S0]
+                 [:q :hyphen]
+                 [:w :equal_sign]
+                 [:e :!Sopen_bracket]
+                 [:r :!Sclose_bracket]]}]
+ ; the default value is 250
+ :simlayer-threshold 500
+ :devices {:macbook-internal [{:product_id 610 :vendor_id 1452}]
+           :filco-minila [{:product_id 34050 :vendor_id 2652}]
+           :hhkb-tmk [{:vendor_id 65261 :product_id 51966}]
+           :hhkb-bt [{:vendor_id 1278 :product_id 514}]
+           :hhkb [{:vendor_id 2131 :product_id 256}]}
+ :applications {:Terminals ["^com\\.apple\\.Terminal$"
+                            "^com\\.googlecode\\.iterm2$"]}
+ :input-sources {:sogou {:input_mode_id "com.sogou.inputmethod.pinyin"
+                         :input_source_id "com.sogou.inputmethod.sogou.pinyin"
+                         :language "zh-Hans"}
+                 :us {:input_mode_id ""
+                      :input_source_id "com.apple.keylayout.ABC"
+                      :language "en"}}}
