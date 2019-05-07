@@ -27,4 +27,4 @@ Goku use the [edn format](https://github.com/edn-format/edn) to the rescue.
 
 ## What is k-goku
 
-k-goku is a configuration using GokuRakuJoudo to generate Karabiner profile, which provide a handy personal customised set of rules.
+k-goku is a configuration using GokuRakuJoudo to generate Karabiner profile, which provides a set of handy personal customised rule. ☺
