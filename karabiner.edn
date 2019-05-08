@@ -53,7 +53,9 @@
                  [:comma :delete_forward]
                  [:period :!Odelete_forward]
                  [:!Cn :!Cdelete_or_backspace]
-                 [:!Cm :!Cdelete_or_backspace]]}
+                 [:!Cm :!Cdelete_or_backspace]
+                 [:!Ccomma :!Cdelete_forward]
+                 [:!Cperiod :!Cdelete_forward]]}
         
         {:des "Hyper Mode - Misc"
          :rules [:hyper-mode
@@ -113,7 +115,7 @@
                  [:e :!S5]
                  [:r :!S6]]}
         
-        {:des "Period mode [.] as Trigger Key"
+        {:des "Period Mode [.] as Trigger Key"
          :rules [:period-mode
                  [:comma ["period-comma-mode" 1] nil {:alone :comma :afterup ["period-comma-mode" 0]}]
                  [:a [:!Sgrave_accent_and_tilde :slash]]
