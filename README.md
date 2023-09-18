@@ -177,8 +177,9 @@ Press `q` as the tmux prefix (you must set your prefix to `ctrl a` first), the s
 ## Installation
 
 1. Install [Karabiner-Elements](https://pqrs.org/osx/karabiner/)
-2. Install [Goku](https://github.com/yqrashawn/GokuRakuJoudo)
-3. Install k-goku
+2. Create a profile in Karabiner-Elements which named 'Default'. (It will generate a karabiner.json file under ~/.config/karabiner/ folder for goku to use.)
+3. Install [Goku](https://github.com/yqrashawn/GokuRakuJoudo)
+4. Install k-goku
 
 ```
 curl https://raw.githubusercontent.com/kchen0x/k-goku/master/karabiner.edn > ~/.config/karabiner.edn
