@@ -4,8 +4,7 @@
              :tmux-winmove-mode {:key :q :condi :Terminals}
              :period-mode {:key :period}
              :comma-mode {:key :comma}
-        ;;      :space-mode {:key :spacebar :condi :macbook-internal}
-             }
+             :space-mode {:key :spacebar :condi :macbook-internal}}
 
  :main [{:des "Hyper Mode - Control"
          :rules [:hyper-mode
@@ -79,29 +78,29 @@
 
         {:des "Tmux Mode [Q] as Trigger Key"
          :rules [:tmux-winmove-mode ;Ta is the prefix for tmux
-                 [:comma [:!Tb :comma]] ;Rename current session
-                 [:open_bracket [:!Tb :open_bracket]] ;Enter copy mode
-                 [:close_bracket [:!Tb :close_bracket]] ;Paste the most recent paste buffer
-                 [:hyphen [:!Tb :hyphen]] ;Delete the most recent paste buffer
-                 [:backslash [:!Tb :backslash]]
-                 [:f [:!Tb :f]] ;Search for a pane
-                 [:e [:!Tb :e]] ;
-                 [:w [:!Tb :w]] ;Choose a window from a list
-                 [:h [:!Tb :h]] ;
-                 [:j [:!Tb :j]] ;
-                 [:k [:!Tb :k]] ;
-                 [:l [:!Tb :l]] ;Select the previously current window
-                 [:v [:!Tb :v]] ;
-                 [:s [:!Tb :s]] ;Choose a session from a list
-                 [:m [:!Tb :z]] ;Zoom the active pane
-                 [:x [:!Tb :x]] ;Kill the active pane
-                 [:c [:!Tb :c]] ;Create a new window
-                 [:1 [:!Tb :1]] ;Select window 1
-                 [:2 [:!Tb :2]] ;Select window 2
-                 [:3 [:!Tb :3]] ;Select window 3
-                 [:4 [:!Tb :4]] ;Select window 4
-                 [:5 [:!Tb :5]]]}
-
+                 [:comma [:!Ta :comma]]
+                 [:open_bracket [:!Ta :open_bracket]]
+                 [:close_bracket [:!Ta :close_bracket]]
+                 [:hyphen [:!Ta :hyphen]]
+                 [:backslash [:!Ta :backslash]]
+                 [:f [:!Ta :f]]
+                 [:e [:!Ta :e]]
+                 [:w [:!Ta :w]]
+                 [:h [:!Ta :h]]
+                 [:j [:!Ta :j]]
+                 [:k [:!Ta :k]]
+                 [:l [:!Ta :l]]
+                 [:v [:!Ta :v]]
+                 [:s [:!Ta :s]]
+                 [:m [:!Ta :z]]
+                 [:x [:!Ta :x]]
+                 [:c [:!Ta :c]]
+                 [:1 [:!Ta :1]]
+                 [:2 [:!Ta :2]]
+                 [:3 [:!Ta :3]]
+                 [:4 [:!Ta :4]]
+                 [:5 [:!Ta :5]]]}
+        
         {:des "Comma Mode [,] as Trigger Key"
          :rules [:comma-mode
                  [:a :open_bracket]
@@ -128,25 +127,23 @@
         {:des "Launcher Mode [L] as Trigger Key"
          :rules [:launch-mode
                  [:t [:launch "Telegram"]]
-                 [:e [:launch "Microsoft Edge"]]
-                 [:f [:launch "Feishu"]]
-                 ]}
-
+                 [:s [:launch "Safari"]]
+                 [:m [:launch "MWeb.app"]]]}
+        
         ;; {:des "HHKB, FILCO MINILA Change left control to esc if alone"
         ;;  :rules [[:##left_control :left_control [:hhkb-bt :hhkb :hhkb-tmk :filco-minila] {:alone :escape}]]}
-
-        {:des "Right shift press alone to change input source"
+        
+        {:des "Shift Press Alone to change input source"
          :rules [[:right_shift :right_shift nil {:alone :!Tspacebar}]
-                ;;  [:left_shift :left_shift nil {:alone :!Tspacebar}]
-                 ]}
-
+                 [:left_shift :left_shift nil {:alone :!Tspacebar}]]}
+        
         {:des "Change right_command to command-tab when used alone"
          :rules [[:right_command :right_command nil {:alone [:!Ctab]}]]}
 
         {:des "Change right_option to 4 modifiers combination, f17 when used alone"
          :rules [[:right_option :!COTleft_shift nil {:alone [:f17]}]]}
-
-        {:des "Quit application by pressing command-q twice"
+        
+        {:des "Quit application by pressing command-q twice" 
          :rules [[:!C#Pq [:!Cq ["command-q" 0]] ["command-q" 1]]
                  [:!C#Pq ["command-q" 1] nil {:delayed {:invoked ["command-q" 0] :canceled ["commandq" 0]}}]]}]
 
