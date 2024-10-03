@@ -1,19 +1,19 @@
 {:templates {:launch "osascript -e 'tell application \"%s\" to activate'"}
  :layers {:hyper-mode {:key :caps_lock :alone {:key :escape}}}
- :simlayers {
-             :launch-mode {:key :slash}
+ :simlayers {:launch-mode {:key :slash}
              :tmux-winmove-mode {:key :q :condi :Terminals}
              :period-mode {:key :period}
              :comma-mode {:key :comma}
-             :space-mode {:key :spacebar :condi :macbook-internal}}
- 
+        ;;      :space-mode {:key :spacebar :condi :macbook-internal}
+             }
+
  :main [{:des "Hyper Mode - Control"
          :rules [:hyper-mode
-                 [:a :!Ta]
+                 [:a :!Tb]
                  [:c :!Tc]
                  [:d :!Td]
                  [:z :!Tz]]}
-        
+
         {:des "Hyper Mode - Navigation [VI style]"
          :rules [:hyper-mode
                  [:j :down_arrow]
@@ -36,7 +36,7 @@
                  [:!Ok {:mkey {:y -1536}}]
                  [:!Oh {:mkey {:x -1536}}]
                  [:!Ol {:mkey {:x 1536}}]]}
-        
+
         {:des "Hyper Mode - Mousekey"
          :rules [:hyper-mode
                  [:down_arrow {:mkey {:y 1536}}]
@@ -45,7 +45,7 @@
                  [:right_arrow {:mkey {:x 1536}}]
                  [:return_or_enter {:pkey :button1}]
                  [:!Creturn_or_enter {:pkey :button2}]]}
-        
+
         {:des "Hyper Mode - Deletion"
          :rules [:hyper-mode
                  [:n :!Odelete_or_backspace]
@@ -56,12 +56,12 @@
                  [:!Cm :!Cdelete_or_backspace]
                  [:!Ccomma :!Cdelete_forward]
                  [:!Cperiod :!Cdelete_forward]]}
-        
+
         {:des "Hyper Mode - Misc"
          :rules [:hyper-mode
                  [:escape :caps_lock]
                  [:grave_accent_and_tilde :!CS5]]}
-        
+
         {:des "Space Mode (Change Mac keyboard to Filco Minila layout with spacebar FN)"
          :rules [:space-mode
                  [:##s :left_arrow]
@@ -75,35 +75,33 @@
                  [:##semicolon :delete_or_backspace]
                  [:##m :delete_forward]
                  [:##comma :end]
-                 [:##period :page_down]
-         ]
-        }
+                 [:##period :page_down]]}
 
         {:des "Tmux Mode [Q] as Trigger Key"
          :rules [:tmux-winmove-mode ;Ta is the prefix for tmux
-                 [:comma [:!Ta :comma]]
-                 [:open_bracket [:!Ta :open_bracket]]
-                 [:close_bracket [:!Ta :close_bracket]]
-                 [:hyphen [:!Ta :hyphen]]
-                 [:backslash [:!Ta :backslash]]
-                 [:f [:!Ta :f]]
-                 [:e [:!Ta :e]]
-                 [:w [:!Ta :w]]
-                 [:h [:!Ta :h]]
-                 [:j [:!Ta :j]]
-                 [:k [:!Ta :k]]
-                 [:l [:!Ta :l]]
-                 [:v [:!Ta :v]]
-                 [:s [:!Ta :s]]
-                 [:m [:!Ta :z]]
-                 [:x [:!Ta :x]]
-                 [:c [:!Ta :c]]
-                 [:1 [:!Ta :1]]
-                 [:2 [:!Ta :2]]
-                 [:3 [:!Ta :3]]
-                 [:4 [:!Ta :4]]
-                 [:5 [:!Ta :5]]]}
-        
+                 [:comma [:!Tb :comma]] ;Rename current session
+                 [:open_bracket [:!Tb :open_bracket]] ;Enter copy mode
+                 [:close_bracket [:!Tb :close_bracket]] ;Paste the most recent paste buffer
+                 [:hyphen [:!Tb :hyphen]] ;Delete the most recent paste buffer
+                 [:backslash [:!Tb :backslash]]
+                 [:f [:!Tb :f]] ;Search for a pane
+                 [:e [:!Tb :e]] ;
+                 [:w [:!Tb :w]] ;Choose a window from a list
+                 [:h [:!Tb :h]] ;
+                 [:j [:!Tb :j]] ;
+                 [:k [:!Tb :k]] ;
+                 [:l [:!Tb :l]] ;Select the previously current window
+                 [:v [:!Tb :v]] ;
+                 [:s [:!Tb :s]] ;Choose a session from a list
+                 [:m [:!Tb :z]] ;Zoom the active pane
+                 [:x [:!Tb :x]] ;Kill the active pane
+                 [:c [:!Tb :c]] ;Create a new window
+                 [:1 [:!Tb :1]] ;Select window 1
+                 [:2 [:!Tb :2]] ;Select window 2
+                 [:3 [:!Tb :3]] ;Select window 3
+                 [:4 [:!Tb :4]] ;Select window 4
+                 [:5 [:!Tb :5]]]}
+
         {:des "Comma Mode [,] as Trigger Key"
          :rules [:comma-mode
                  [:a :open_bracket]
@@ -114,7 +112,7 @@
                  [:w :!Sequal_sign]
                  [:e :!S5]
                  [:r :!S6]]}
-        
+
         {:des "Period Mode [.] as Trigger Key"
          :rules [:period-mode
                  [:comma ["period-comma-mode" 1] nil {:alone :comma :afterup ["period-comma-mode" 0]}]
@@ -126,46 +124,48 @@
                  [:w :equal_sign]
                  [:e :!Sopen_bracket]
                  [:r :!Sclose_bracket]]}
-        
+
         {:des "Launcher Mode [L] as Trigger Key"
          :rules [:launch-mode
                  [:t [:launch "Telegram"]]
-                 [:s [:launch "Safari"]]
-                 [:m [:launch "MWeb.app"]]]}
-        
+                 [:e [:launch "Microsoft Edge"]]
+                 [:f [:launch "Feishu"]]
+                 ]}
+
         ;; {:des "HHKB, FILCO MINILA Change left control to esc if alone"
         ;;  :rules [[:##left_control :left_control [:hhkb-bt :hhkb :hhkb-tmk :filco-minila] {:alone :escape}]]}
-        
-        {:des "Shift Press Alone to change input source"
+
+        {:des "Right shift press alone to change input source"
          :rules [[:right_shift :right_shift nil {:alone :!Tspacebar}]
-                 [:left_shift :left_shift nil {:alone :!Tspacebar}]]}
-        
+                ;;  [:left_shift :left_shift nil {:alone :!Tspacebar}]
+                 ]}
+
         {:des "Change right_command to command-tab when used alone"
          :rules [[:right_command :right_command nil {:alone [:!Ctab]}]]}
-        
+
         {:des "Change right_option to 4 modifiers combination, f17 when used alone"
          :rules [[:right_option :!COTleft_shift nil {:alone [:f17]}]]}
-        
-        {:des "Quit application by pressing command-q twice" 
+
+        {:des "Quit application by pressing command-q twice"
          :rules [[:!C#Pq [:!Cq ["command-q" 0]] ["command-q" 1]]
                  [:!C#Pq ["command-q" 1] nil {:delayed {:invoked ["command-q" 0] :canceled ["commandq" 0]}}]]}]
- 
+
  ; the default value is 250
  :simlayer-threshold 500
- 
- :devices {:macbook-internal [{:product_id 610 :vendor_id 1452}]
+
+ :devices {:macbook-internal [{:product_id 638 :vendor_id 1452}]
            :filco-minila [{:product_id 34050 :vendor_id 2652}]
            :hhkb-tmk [{:vendor_id 65261 :product_id 51966}]
            :hhkb-bt [{:vendor_id 1278 :product_id 514}]
            :hhkb [{:vendor_id 2131 :product_id 256}]}
- 
+
  :applications {:Terminals ["^com\\.apple\\.Terminal$"
                             "^com\\.googlecode\\.iterm2$"]}
- 
+
  :input-sources {:sogou {:input_mode_id "com.sogou.inputmethod.pinyin"
                          :input_source_id "com.sogou.inputmethod.sogou.pinyin"
                          :language "zh-Hans"}
-                 
+
                  :us {:input_mode_id ""
                       :input_source_id "com.apple.keylayout.ABC"
                       :language "en"}}}
