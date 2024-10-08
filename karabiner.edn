@@ -100,7 +100,7 @@
                  [:3 [:!Ta :3]]
                  [:4 [:!Ta :4]]
                  [:5 [:!Ta :5]]]}
-        
+
         {:des "Comma Mode [,] as Trigger Key"
          :rules [:comma-mode
                  [:a :open_bracket]
@@ -129,20 +129,19 @@
                  [:t [:launch "Telegram"]]
                  [:s [:launch "Safari"]]
                  [:m [:launch "MWeb.app"]]]}
-        
+
         ;; {:des "HHKB, FILCO MINILA Change left control to esc if alone"
         ;;  :rules [[:##left_control :left_control [:hhkb-bt :hhkb :hhkb-tmk :filco-minila] {:alone :escape}]]}
-        
-        {:des "Shift Press Alone to change input source"
-         :rules [[:right_shift :right_shift nil {:alone :!Tspacebar}]
-                 [:left_shift :left_shift nil {:alone :!Tspacebar}]]}
-        
+
+        {:des "Right_shift pressed alone to change input source"
+         :rules [[:right_shift :right_shift nil {:alone :!Tspacebar}]]}
+
         {:des "Change right_command to command-tab when used alone"
          :rules [[:right_command :right_command nil {:alone [:!Ctab]}]]}
 
         {:des "Change right_option to 4 modifiers combination, f17 when used alone"
          :rules [[:right_option :!COTleft_shift nil {:alone [:f17]}]]}
-        
+
         {:des "Quit application by pressing command-q twice" 
          :rules [[:!C#Pq [:!Cq ["command-q" 0]] ["command-q" 1]]
                  [:!C#Pq ["command-q" 1] nil {:delayed {:invoked ["command-q" 0] :canceled ["commandq" 0]}}]]}]
