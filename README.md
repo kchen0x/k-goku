@@ -1,3 +1,5 @@
+English | [中文](README_zh.md)
+
 # k-goku
 
 A configuration using GokuRakuJoudo to generate Karabiner profile.
@@ -132,40 +134,21 @@ Press `.` to trigger period mode, and:
 | `e` | `{`  | open brace       |
 | `r` | `}`  | close brace      |
 
-#### Space Mode 
+#### Launcher Mode [/] as Trigger Key
 
-Change Mac build-in keyboard to Filco Minila layout with spacebar FN.
+Press `/` to trigger launcher mode. It works as a **toggle**: press once to activate/focus the app, press again to hide it when the app is already in the foreground.
 
-If you got a Filco Minila keyboard, you might get used to the layout with powerful FN key. Now you can play with your mac build-in keyboard `space` key the same way. And you know how it works without doubt.
-
-TL; DR
-
-#### Tmux Mode [Q] as Trigger Key
-
-Press `q` as the tmux prefix (you must set your prefix to `ctrl a` first), the supported lists as follows:
-
-- `,`
-- `[`
-- `]`
-- `-`
-- `\`
-- `f`
-- `e`
-- `w`
-- `h`
-- `j`
-- `k`
-- `l`
-- `v`
-- `s`
-- `z`
-- `x`
-- `c`
-- `1`
-- `2`
-- `3`
-- `4`
-- `5`
+| key | app      | note          |
+|-----|----------|---------------|
+| `t` | Telegram | messaging     |
+| `q` | QSpace   | file manager  |
+| `c` | Cursor   | code editor   |
+| `w` | WeChat   | messaging     |
+| `i` | iTerm2   | terminal      |
+| `d` | Dia      | web browser   |
+| `s` | Spark    | email client  |
+| `f` | Feishu   | collaboration |
+| `h` | -        | hide current app (Cmd+H) |
 
 ### Misc
 
@@ -179,6 +162,11 @@ Press `q` as the tmux prefix (you must set your prefix to `ctrl a` first), the s
 1. Install [Karabiner-Elements](https://pqrs.org/osx/karabiner/)
 2. Create a profile in Karabiner-Elements which named 'Default'. (It will generate a karabiner.json file under ~/.config/karabiner/ folder for goku to use.)
 3. Install [Goku](https://github.com/yqrashawn/GokuRakuJoudo)
+
+```
+brew install yqrashawn/goku/goku
+```
+
 4. Install k-goku
 
 ```

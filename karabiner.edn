@@ -1,10 +1,10 @@
-{:templates {:launch "osascript -e 'tell application \"%s\" to activate'"}
+{:templates {:launch "osascript -e 'on run argv' -e 'set appName to item 1 of argv' -e 'tell application \"System Events\"' -e 'set frontApp to name of first application process whose frontmost is true' -e 'end tell' -e 'if frontApp is appName then' -e 'tell application \"System Events\" to set visible of application process appName to false' -e 'else' -e 'tell application appName to activate' -e 'end if' -e 'end run' -- \"%s\""
+             :open "open %s"
+             :shell "/bin/bash -c '%s'"}
  :layers {:hyper-mode {:key :caps_lock :alone {:key :escape}}}
  :simlayers {:launch-mode {:key :slash}
-             :tmux-winmove-mode {:key :q :condi :Terminals}
              :period-mode {:key :period}
-             :comma-mode {:key :comma}
-             :space-mode {:key :spacebar :condi :macbook-internal}}
+             :comma-mode {:key :comma}}
 
  :main [{:des "Hyper Mode - Control"
          :rules [:hyper-mode
@@ -61,46 +61,6 @@
                  [:escape :caps_lock]
                  [:grave_accent_and_tilde :!CS5]]}
 
-        {:des "Space Mode (Change Mac keyboard to Filco Minila layout with spacebar FN)"
-         :rules [:space-mode
-                 [:##s :left_arrow]
-                 [:##d :down_arrow]
-                 [:##f :right_arrow]
-                 [:##e :up_arrow]
-
-                 [:##j :insert]
-                 [:##k :home]
-                 [:##l :page_up]
-                 [:##semicolon :delete_or_backspace]
-                 [:##m :delete_forward]
-                 [:##comma :end]
-                 [:##period :page_down]]}
-
-        {:des "Tmux Mode [Q] as Trigger Key"
-         :rules [:tmux-winmove-mode ;Ta is the prefix for tmux
-                 [:comma [:!Ta :comma]]
-                 [:open_bracket [:!Ta :open_bracket]]
-                 [:close_bracket [:!Ta :close_bracket]]
-                 [:hyphen [:!Ta :hyphen]]
-                 [:backslash [:!Ta :backslash]]
-                 [:f [:!Ta :f]]
-                 [:e [:!Ta :e]]
-                 [:w [:!Ta :w]]
-                 [:h [:!Ta :h]]
-                 [:j [:!Ta :j]]
-                 [:k [:!Ta :k]]
-                 [:l [:!Ta :l]]
-                 [:v [:!Ta :v]]
-                 [:s [:!Ta :s]]
-                 [:m [:!Ta :z]]
-                 [:x [:!Ta :x]]
-                 [:c [:!Ta :c]]
-                 [:1 [:!Ta :1]]
-                 [:2 [:!Ta :2]]
-                 [:3 [:!Ta :3]]
-                 [:4 [:!Ta :4]]
-                 [:5 [:!Ta :5]]]}
-
         {:des "Comma Mode [,] as Trigger Key"
          :rules [:comma-mode
                  [:a :open_bracket]
@@ -124,17 +84,20 @@
                  [:e :!Sopen_bracket]
                  [:r :!Sclose_bracket]]}
 
-        {:des "Launcher Mode [L] as Trigger Key"
+        {:des "Launcher Mode [/] as Trigger Key"
          :rules [:launch-mode
                  [:t [:launch "Telegram"]]
-                 [:s [:launch "Safari"]]
-                 [:m [:launch "MWeb.app"]]]}
-
-        ;; {:des "HHKB, FILCO MINILA Change left control to esc if alone"
-        ;;  :rules [[:##left_control :left_control [:hhkb-bt :hhkb :hhkb-tmk :filco-minila] {:alone :escape}]]}
+                 [:q [:launch "QSpace Pro"]]
+                 [:c [:launch "Cursor"]]
+                 [:w [:launch "WeChat"]]
+                 [:i [:launch "iTerm2"]]
+                 [:d [:launch "Dia"]]
+                 [:s [:launch "Spark"]]
+                 [:f [:launch "Feishu"]]
+                 [:h :!Ch]]}
 
         {:des "Right_shift pressed alone to change input source"
-         :rules [[:right_shift :right_shift nil {:alone :!Tspacebar}]]}
+         :rules [[:right_shift :right_shift nil {:alone :fn}]]}
 
         {:des "Change right_command to command-tab when used alone"
          :rules [[:right_command :right_command nil {:alone [:!Ctab]}]]}
